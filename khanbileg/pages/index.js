@@ -1,9 +1,34 @@
-import Image from "next/image";
+import React , { useState } from "react";
+ 
+const useStateTask= () => {
+  const[color, setColor] = useState("");
+  return(
 
-export default function Home() {
-  return (
-    <div className="flex justify-center items-center w-16 h-16">
-       <Image src="/" width={500} height={500} />
+    <div className={`flex space-x-4 w-full h-screen bg-${color}-800`}>
+      <p>Өнгө солих:</p>
+       <button className="border bg-red-800 py-6 px-4" 
+       onClick={() => {
+       setColor("red");
+      } }
+      >
+        Улаан
+       </button>
+       <button className="border bg-blue-800 py-6 px-4" 
+       onClick={() => {
+       setColor("blue");
+      } }
+      >
+        Цэнхэр
+       </button>
+      <button className="border bg-green-800 py-6 px-4" 
+        onClick={() => {
+        setColor("green");
+      } }
+      >
+        Ногоон
+      </button>
     </div>
   );
-}
+};
+
+export default useStateTask;
