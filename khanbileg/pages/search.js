@@ -23,7 +23,7 @@ const usersdata = [
     {id: 20, Name: "Ochir-Erdene", email: "medhgu"},
 ]
 
-export default function Home() {
+export default function Users() {
     const [users, setsUsers] = useState(usersdata);
     const [search, setSearch] = useState(" ");
 
@@ -34,5 +34,37 @@ export default function Home() {
    console.log("search", search);
    console.log("filtered", filteredUsers);
 
-   
+   return(
+    <div className="min-h-screen bg-gray-100 p-8">
+        <h1 className="text-2xl font-bold mb-4 text-center">
+            Хэрэглэгчийн жагсаалт
+        </h1>
+        <div className="mb-6">
+            <input 
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Хэрэглэгчийн нэрээр хайна уу ..."
+            className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+        </div>
+        <div className="grid gap-4">
+        {filteredUsers.length > 0 ? (
+          filteredUsers.map((user) => (
+            <div
+              key={user.id}
+              className="bg-white shadow-md rounded-lg p-4 flex justify-between items-center"
+            >
+              <div>
+                <p className="text-lg font-medium">{user.name}</p>
+                <p className="text-sm text-gray-500">{user.email}</p>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p className="text-gray-500">Хэрэглэгч олдсонгүй.</p>
+        )}
+        </div>
+    </div>
+   )
 }
